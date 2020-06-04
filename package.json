@@ -1,0 +1,11 @@
+{
+  "name": "repl-driven-js",
+  "version": "0.0.0",
+  "description": "Demonstrate REPL-driven JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Winship <luke.winship@gmail.com> (https://www.lukehesluke.com)",
+  "license": "ISC"
+}
