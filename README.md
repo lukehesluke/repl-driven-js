@@ -4,7 +4,7 @@ Demonstration of doing REPL-driven development on the web with JS
 
 ## Summary
 
-_TODO video_
+![Demo](demo/summary.gif)
 
 ## Set-up
 
