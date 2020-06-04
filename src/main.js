@@ -1,3 +1,4 @@
+/** App state that we ideally want to keep untouched as we continually update the living app */
 const state = {
   libs: {},
   intervalId: null,
@@ -6,6 +7,7 @@ const state = {
   counter: 0,
 };
 
+/** Import dependencies using ES dynamic `import()` */
 async function importLibs() {
   const { default: moment } = await import('https://cdn.pika.dev/moment@2.26.0');
   state.libs = {
@@ -13,11 +15,19 @@ async function importLibs() {
   };
 }
 
+/**
+ * Function that will be called on a schedule.
+ * Change the code in here, evaluate it and see the page change without wiping the state
+ */
 function onInterval() {
   state.statusPara.innerText = `Local time: ${state.libs.moment().format()} ;; Counter: ${state.counter}`;
   state.counter += 1;
 }
 
+/**
+ * Wipe state. Since some of the state is tied up with resources (e.g. timers, DOM elements)
+ * these need to be cleaned up.
+ */
 function unload() {
   if (state.intervalId) {
     clearInterval(state.intervalId);
@@ -34,6 +44,9 @@ function unload() {
   state.counter = 0;
 }
 
+/**
+ * Set-up state and its associated resources (e.g. timers, DOM elements).
+ */
 function load() {
   unload();
   // # Create h1 heading
@@ -41,7 +54,7 @@ function load() {
   heading.innerText = 'REPL-driven JS - Demo';
   document.body.appendChild(heading);
   state.heading = heading;
-  // # Create para for showing time + counter
+  // # Create paragraph for showing time + counter
   const statusPara = document.createElement('p');
   statusPara.innerText = '';
   document.body.appendChild(statusPara);
