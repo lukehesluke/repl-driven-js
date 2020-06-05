@@ -122,6 +122,47 @@ async function importLibs() {
 
 Re-evaluate the `importLibs()` function with `SPC m s r` and the new dependencies will immediately become available to your running app.
 
+## Problem 4: How do I run multiple files?
+
+_TODO_
+
+Demonstrate: Add a new file e.g. `utils.js`. Export a function from this file e.g.
+    ```js
+    export function add2(x) {
+      return x + 2;
+    }
+    ```
+    Try to import it in your main script with, in your `importLibs()`:
+    ```js
+    if (!libs.utils) {
+      libs.utils = await import('./utils.js');
+    }
+    ```
+    When you evaluate this change to the libraries, your browser will complain that that file doesn't exist.
+    This is because `skewer` does not serve files from your project directory.
+Solution: Create bespoke HTML page, `repl.html`:
+    ```html
+    <!doctype html>
+
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+    </head>
+
+    <body>
+      <script src="http://localhost:8080/skewer"></script>
+    </body>
+    </html>
+    ```
+    Then, from your code directory, run an HTTP server e.g. `http-server` from NPM.
+
+    1. Install with `npm install -g http-server`
+    2. Run with `http-server --cors --port 8081`
+
+    Port must be `8081` as `8080` is used by skewer.
+    CORS must be enabled so that evaluated JS code (which will be running from a script hosted by skewer on port 8080) can import files from this port 8081 server.
+    This should now work ✅
+
 ## But don't run this code in Prod!
 
 _TODO_
