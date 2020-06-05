@@ -48,7 +48,7 @@ You'll need a modern browser as this approach only works with modern ES features
     ```js
     console.log('Hey Giiirrrrrrl!');
     ```
-2. Run `SPC m '` to run a **skewer** REPL. skewer is the emacs plugin that allows live web development. This will launch a browser window that Spacemacs is connected to.
+2. Run `SPC SPC run-skewer` to initiate **skewer**. skewer is the emacs plugin that allows live web development. This will launch a browser window that Spacemacs is connected to.
 3. Run `SPC m s b` to evaluate the whole buffer. This will log `Hey Giiirrrrrrl!` to the console in your browser window.
 4. Now, we can try something a little more complicated. Change your JS file's contents to:
     ```js
