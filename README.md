@@ -28,6 +28,7 @@ To be fair, here are the pros/cons with REPL-driven Development for JS:
 
 - 👌🏼👌🏼👌🏼 Very highly interactive. Functions, state, dependencies, etc can be modified indefinitely without requiring a manual page refresh.
 - 👌🏼 Works without needing to bundle JS, which improves the use of tooling e.g. browser debugger.
+- 👩‍🔬 Facilitates rapid experimentation as your editor becomes an interactive REPL.
 - ❌ To work well, this requires an IDE that supports evaluating JavaScript into a live window. As far as I know, this is only available for Emacs.
 - ❌ I lied earlier. It is sometimes easier to do a manual page refresh if you've ended up in a funky state. This is aviodable but it's not hard to make mistakes.
 - ❌ In order to maximise REPL-driven-ability, code can become rather non-traditional for JS e.g. keeping imports in an object.
