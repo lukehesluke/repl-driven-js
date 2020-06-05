@@ -1,5 +1,7 @@
 # repl-driven-js
 
+_⚠️ This is a work in progress - I'm experimenting with it currently to see how it works for a bigger project ⚠️_
+
 Demonstration of doing REPL-driven development on the web with JS using Spacemacs
 
 ## Summary
@@ -30,7 +32,7 @@ To be fair, here are the pros/cons with REPL-driven Development for JS:
 - ❌ I lied earlier. It is sometimes easier to do a manual page refresh if you've ended up in a funky state. This is aviodable but it's not hard to make mistakes.
 - ❌ In order to maximise REPL-driven-ability, code can become rather non-traditional for JS e.g. keeping imports in an object.
 
-Especially for the last reason, I would recommend only using REPL-driven development if you know that it will be more productive for your goal. A small group of people making a WebGL video game is a very good example of a development flow that would be greatly improved.
+Especially for the last reason, I would recommend only using REPL-driven development if you know that it will be more productive for your goal. A small group of people making a WebGL game is a very good example of a development flow that would be greatly improved.
 
 ## Set-up
 
@@ -46,25 +48,27 @@ You'll need a modern browser as this approach only works with modern ES features
     console.log('Hey Giiirrrrrrl!');
     ```
 2. Run `SPC m '` to run a **skewer** REPL. skewer is the emacs plugin that allows live web development. This will launch a browser window that Spacemacs is connected to.
-3. Run `SPC m s b` to evaluate the whole buffer. This will log `'Hey Giiirrrrrrl!'` to the console in your browser window.
+3. Run `SPC m s b` to evaluate the whole buffer. This will log `Hey Giiirrrrrrl!` to the console in your browser window.
 4. Now, we can try something a little more complicated. Change your JS file's contents to:
     ```js
-    // # Create h1 heading
-    const heading = document.createElement('h1');
-    heading.innerText = 'REPL-driven JS - Demo';
-    document.body.appendChild(heading);
-    heading = heading;
-    // # Create paragraph for showing time + counter
-    const statusPara = document.createElement('p');
-    statusPara.innerText = '';
-    document.body.appendChild(statusPara);
-    statusPara = statusPara;
-    // # Set-up an interval
-    let counter = 0;
-    setInterval(() => {
-      statusPara.innerText = `Counter: ${counter}`;
-      counter += 1;
-    }, 1000);
+    function load() {
+      // # Create h1 heading
+      const heading = document.createElement('h1');
+      heading.innerText = 'REPL-driven JS - Demo';
+      document.body.appendChild(heading);
+      // # Create paragraph for showing time + counter
+      const statusPara = document.createElement('p');
+      statusPara.innerText = '';
+      document.body.appendChild(statusPara);
+      // # Set-up an interval
+      let counter = 0;
+      setInterval(() => {
+        statusPara.innerText = `Counter: ${counter}`;
+        counter += 1;
+      }, 1000);
+    }
+
+    load();
     ```
 5. Evaluate this (again: `SPC m s b`), and you will see that the DOM elements and timer have been created.
 
@@ -73,7 +77,7 @@ You'll need a modern browser as this approach only works with modern ES features
 _TODO_
 
 - Demonstrate: By calling `load()` (without state checking logic twice and showing that DOM elements, timers, etc get duplicated)
-- Solution: Use `window.state`
+- Solution: Use `state` and `unload()` function
 
 ## Problem 2: Re-evaluating the onInterval() Function does not Affect the Existing Interval!
 
